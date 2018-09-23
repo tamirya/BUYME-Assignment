@@ -1,0 +1,80 @@
+<div class="container">
+        <div class="row" >
+           <div class="col-sm-12" id="todo-header"   >
+             <label>משימות</label>
+             <button class="btn  btn-primary"  data-toggle="modal" data-target="#addTaskForm" id="addBtn" >+</button>
+           </div>
+        </div>
+
+
+        <div class="row footer" >
+          <div class="col-sm-4 item-not-complete-count">
+                <label> לסיום:  </label>
+                <label> {{unCompletedItems.length}} </label>
+          </div>
+         <div class="col-sm-4 item-completed-count">
+                <label> הושלמו:  </label>
+                <label> {{completedItems.length}} </label>
+         </div>
+
+        <div class="col-sm-4 items-total-count">
+                <label> סה"כ:  </label>
+                <label> {{model.length }}  </label>
+        </div>
+        </div>
+
+{{#each model as |todo|}}
+         <div class="row item">
+            <div class="col-sm-1 item-complete">
+              {{input type="checkbox" checked=todo.completed class="toggle" click=(action "updateTask" todo )   }}
+            </div>
+            <div class="col-sm-5 item-txt"  >
+            {{#if todo.completed }}
+                    <label  class="txt-strike">
+                        {{todo.title}}
+                    </label>
+            {{else}}
+                   {{#if todo.isEditing}}
+                        {{input  class='editItem' placeholder=todo.title valueBinding=newVal }}
+                        <button class="btn  btn-primary" {{action "updateTodo" todo newVal }} id="editBtn" >Update</button>
+                      {{else}}
+                           <label {{action "editTodo" todo on="doubleClick"}}  class="">
+                                 {{todo.title}}
+                           </label>
+                  {{/if}}
+              {{/if}}
+
+            </div>
+            <div class="col-sm-6 item-del">
+              <button class="btn  btn-danger"  {{action "delItem" todo}}  id="delBtn" >X</button>
+            </div>
+          </div>
+          {{/each}}
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addTaskForm" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">הוסף משימה</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                {{input  class="form-control" valueBinding=newInputTask  placeholder="הכנס תיאור" }}
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" {{action "createTask" newInputTask}} class="btn btn-primary">שמור</button>
+      </div>
+    </div>
+  </div>
+</div>

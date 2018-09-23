@@ -1,0 +1,40 @@
+body{
+    margin: 15px !important;
+}
+
+#todo-header{
+    background-color: aliceblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+label
+{
+    float: right;
+}
+
+.txt-strike{
+    text-decoration: line-through;
+}
+
+#items{
+    background-color: antiquewhite;
+}
+
+.item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: beige;
+}
+
+.row.item {
+    border-top: 1px solid #e3e3e3;
+}
+
+.modal-header .close {
+    padding: 0 !important;
+    margin:  0 !important;
+}
+.footer{
+    background-color: #e3e3e3;
+    text-align: center;
+}
