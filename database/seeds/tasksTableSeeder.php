@@ -14,7 +14,7 @@ class tasksTableSeeder extends Seeder
     	for( $i=0;$i<5;$i++ ){
 			DB::table('tasks')->insert([
 	           'title'     => 'item '.str_random(10),
-            	'completed' => str_random(10)
+            	'completed' => 0
 	        ]);
     	}
     }
